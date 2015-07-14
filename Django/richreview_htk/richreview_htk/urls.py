@@ -19,6 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 	url(r'^force_alignment/', include('force_alignment.urls')),
-	url(r'^speech2text/', include('speech2text.urls')),
 	url(r'^bluemix_auth/', include('bluemix_auth.urls'))
 ]
