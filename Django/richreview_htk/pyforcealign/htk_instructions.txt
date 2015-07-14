@@ -1,0 +1,23 @@
+Instructions for getting HTK to work on Mac
+Please read all of the instructions before starting, as they are not necessarily in order.
+
+(1) Follow the instructions at http://linguisticmystic.com/2014/02/12/penn-forced-aligner-on-mac-os-x/ to install HTK, P2FA, and Sox.
+	A. You will need a username and password to install HTK. Here is one you can use: venkats, yVbp=boe
+	B. Before moving to step 1, part 6 of the tutorial, see (2) below.
+	C. In step 1, part 6 of the tutorial, instead of typing the command shown there, type this: 
+		./configure -build=i686-apple-macos LDFLAGS=-L/opt/X11/lib CFLAGS='-I/opt/X11/include -I/usr/include/malloc -DARCH=\"darwin\"'
+	D. Download P2FA from this link instead of that one: https://www.ling.upenn.edu/phonetics/old_website_2015/p2fa/index.html
+
+(2) (before moving on to step 1, part 6 of the tutorial linked above) You’ll have to make a slight modification to one HTK library file to get alignment to work. Instructions for fixing the bug are on this thread: https://groups.google.com/forum/#!msg/fave-users/wDScrDkF44Q/Mfd-0LRSlGsJ. The parts to use are transcribed below:
+	A. In the HTK source code, open htk>HTKLib>HRec.c
+	B. Find line 1650. It should read
+		if (dur<=0 && labid != splabid) HError(8522,"LatFromPaths: Align have dur<=0 ");
+	C. Change that line to:
+		if (dur<=0 && labpr != splabid) HError(8522,"LatFromPaths: Align have dur<=0 ");
+	D. In the command line, type the following just to be safe:
+		export CPPFLAGS=-UPHNALG
+	E. Now go back to (1) part C and continue compiling HTK.
+
+(3) If you’re using the module I set up, this shouldn’t be a problem, but if importing align.py from somewhere else, there’s a small bug in align.prep_wav that causes Sox to fail. The command that says
+	os.system("sox " + orig_wav + " -r " + str(SR) + " " + out_wav + " polyphase" + soxopts)
+should not have the polyphase component (I believe this is deprecated).

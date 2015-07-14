@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:richreview_htk"
+      name = "Central Files">
+      <FileRef
+         location = "group:__init__.py">
+      </FileRef>
+      <FileRef
+         location = "group:settings.py">
+      </FileRef>
+      <FileRef
+         location = "group:urls.py">
+      </FileRef>
+      <FileRef
+         location = "group:wsgi.py">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:bluemix_auth"
+      name = "Bluemix Authentication">
+      <FileRef
+         location = "group:__init__.py">
+      </FileRef>
+      <FileRef
+         location = "group:admin.py">
+      </FileRef>
+      <Group
+         location = "group:migrations"
+         name = "migrations">
+         <FileRef
+            location = "group:__init__.py">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:models.py">
+      </FileRef>
+      <FileRef
+         location = "group:tests.py">
+      </FileRef>
+      <FileRef
+         location = "group:urls.py">
+      </FileRef>
+      <FileRef
+         location = "group:views.py">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:force_alignment"
+      name = "Force Alignment">
+      <FileRef
+         location = "group:__init__.py">
+      </FileRef>
+      <FileRef
+         location = "group:admin.py">
+      </FileRef>
+      <Group
+         location = "group:migrations"
+         name = "migrations">
+         <FileRef
+            location = "group:__init__.py">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:models.py">
+      </FileRef>
+      <FileRef
+         location = "group:tests.py">
+      </FileRef>
+      <FileRef
+         location = "group:urls.py">
+      </FileRef>
+      <FileRef
+         location = "group:views.py">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:pyforcealign"
+      name = "Force Alignment Tools">
+      <FileRef
+         location = "group:__init__.py">
+      </FileRef>
+      <FileRef
+         location = "group:align.py">
+      </FileRef>
+      <FileRef
+         location = "group:align_output.py">
+      </FileRef>
+      <FileRef
+         location = "group:htk_instructions.txt">
+      </FileRef>
+      <FileRef
+         location = "group:main_test.py">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:speech2text"
+      name = "Speech To Text">
+      <FileRef
+         location = "group:__init__.py">
+      </FileRef>
+      <FileRef
+         location = "group:admin.py">
+      </FileRef>
+      <Group
+         location = "group:migrations"
+         name = "migrations">
+         <FileRef
+            location = "group:__init__.py">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:models.py">
+      </FileRef>
+      <FileRef
+         location = "group:tests.py">
+      </FileRef>
+      <FileRef
+         location = "group:urls.py">
+      </FileRef>
+      <FileRef
+         location = "group:views.py">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:py_s2t"
+      name = "Speech To Text Tools">
+      <FileRef
+         location = "group:__init__.py">
+      </FileRef>
+      <FileRef
+         location = "group:manifest.yml">
+      </FileRef>
+      <FileRef
+         location = "group:requirements.txt">
+      </FileRef>
+      <FileRef
+         location = "group:server.py">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:templates"
+      name = "templates">
+      <Group
+         location = "group:admin"
+         name = "admin">
+         <FileRef
+            location = "group:base_site.html">
+         </FileRef>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:db.sqlite3">
+   </FileRef>
+   <Group
+      location = "group:utilities"
+      name = "utilities">
+      <FileRef
+         location = "group:__init__.py">
+      </FileRef>
+      <FileRef
+         location = "group:access_control.py">
+      </FileRef>
+   </Group>
+   <FileRef
+      location = "group:manage.py">
+   </FileRef>
+   <FileRef
+      location = "group:readme.txt">
+   </FileRef>
+</Workspace>
