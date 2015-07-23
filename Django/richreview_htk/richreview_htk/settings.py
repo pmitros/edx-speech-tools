@@ -28,6 +28,7 @@ ALLOWED_HOSTS = []
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:63342',
+    'localhost:63343',
 )
 
 
