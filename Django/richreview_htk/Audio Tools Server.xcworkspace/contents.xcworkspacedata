@@ -95,35 +95,6 @@
       </FileRef>
    </Group>
    <Group
-      location = "group:speech2text"
-      name = "Speech To Text">
-      <FileRef
-         location = "group:__init__.py">
-      </FileRef>
-      <FileRef
-         location = "group:admin.py">
-      </FileRef>
-      <Group
-         location = "group:migrations"
-         name = "migrations">
-         <FileRef
-            location = "group:__init__.py">
-         </FileRef>
-      </Group>
-      <FileRef
-         location = "group:models.py">
-      </FileRef>
-      <FileRef
-         location = "group:tests.py">
-      </FileRef>
-      <FileRef
-         location = "group:urls.py">
-      </FileRef>
-      <FileRef
-         location = "group:views.py">
-      </FileRef>
-   </Group>
-   <Group
       location = "group:py_s2t"
       name = "Speech To Text Tools">
       <FileRef
@@ -168,5 +139,8 @@
    </FileRef>
    <FileRef
       location = "group:readme.txt">
+   </FileRef>
+   <FileRef
+      location = "group:../../formality.py">
    </FileRef>
 </Workspace>

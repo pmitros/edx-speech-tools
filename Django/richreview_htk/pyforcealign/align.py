@@ -77,7 +77,7 @@ def prep_mlf(trsfile, mlffile, word_dictionary, surround, between):
     hyphenPat = re.compile(r'([A-Z]+)-([A-Z]+)')
 
     while (i < len(lines)):
-        txt = lines[i].replace('\n', '')
+        txt = lines[i].replace('\n', '').replace('\xe2\x80\x99', "'")
         txt = txt.replace('{breath}', '{BR}').replace('&lt;noise&gt;', '{NS}')
         txt = txt.replace('{laugh}', '{LG}').replace('{laughter}', '{LG}')
         txt = txt.replace('{cough}', '{CG}').replace('{lipsmack}', '{LS}')

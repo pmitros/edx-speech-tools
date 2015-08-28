@@ -66,7 +66,22 @@ def force_align(mypath, wavfile, trsfile):
 	align.cleanup_working_directory()
 	return op
 
+'''Looks in subdirectories of basePath to find files ending in '-transcript.txt'. It uses the preceding part of these files to look for audio files which can then be force aligned. The alignments are written to the prefix + '-intervals.txt'.'''
+def recursive_forcealign(basePath):
+	dir_contents = os.listdir(basePath)
+	for path in dir_contents:
+		full_path = os.path.join(basePath, path)
+		if os.path.isdir(full_path):
+			recursive_forcealign(full_path)
+		elif '-transcript.txt' in full_path:
+			prefix = path[:path.find('-transcript')]
+			if prefix + '.wav' in dir_contents:
+				align_output.write_output(force_align("/Users/venkatesh-sivaraman/p2fa/model", os.path.join(basePath, prefix + '.wav'), full_path), os.path.join(basePath, prefix + '-aligned.txt'))
+
+
 if __name__ == '__main__':
-	basePath = "/Users/venkatesh-sivaraman/Desktop/RSI/RichReviewHtkTest/"
-	align_output.write_output(force_align("/Users/venkatesh-sivaraman/p2fa/model", basePath + "sample1.wav", basePath + "transcript.txt"), basePath + "output1.txt")
+	basePath = "/Users/venkatesh-sivaraman/Desktop/Stimuli/"
+	#align_output.write_output(force_align("/Users/venkatesh-sivaraman/p2fa/model", basePath + "sample1.wav", basePath + "transcript.txt"), basePath + "output1.txt")
+	recursive_forcealign(basePath + "-4")
+	recursive_forcealign(basePath + "-5")
 	print "Done"

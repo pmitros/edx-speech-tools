@@ -34,10 +34,11 @@ def forcealign(request):
 		return_text = "Error %r loading transcript file" % e
 		return format_access(HttpResponse(return_text))
 	else:
-		transtext = transfile.read()
+		transtext = transfile.read().replace('\xe2\x80\x99', "'")
 		with open(transtmppath, "w") as f:
 			f.write(transtext)
-		return_text = "You selected to transcribe the contents of %s with transcription %s: <br/>" % (sample, transtext)
+		print sample, transtext
+		#return_text = "You selected to transcribe the contents of %s with transcription %s: <br/>" % (sample, transtext)
 		transfile.close()
 
 	try:
@@ -52,6 +53,6 @@ def forcealign(request):
 
 	words = pyforcealign.force_align(P2FA_DIR, speechtmppath, transtmppath)
 	#Create a JSON string to return
-	return_text = json.JSONEncoder().encode([[w.word, w.start, w.end] for w in words]) #pyforcealign.output_string(words)
+	return_text = json.JSONEncoder().encode([[w.word, w.start, w.end] for w in words])
 	shutil.rmtree(tmppath)
 	return format_access(HttpResponse(return_text))
