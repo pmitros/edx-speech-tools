@@ -51,21 +51,21 @@ def read_transcripts(base_dir):
 					transcripts[num] = transs
 	return transcripts
 
-def read_aligned_transcripts(base_dir):
-	'''Read out the transcripts from alignment files in base_dir. Alignment files are signified by the string '-aligned.txt' at the end of their path. The results are returned in a dictionary by prompt number.'''
+def read_aligned_transcripts(base_dir, ext="-aligned.txt"):
+	'''Read out the transcripts from alignment files in base_dir. Alignment files are signified by the string 'ext' at the end of their path. The results are returned in a dictionary by prompt number.'''
 	transcripts = {}
 	for path in os.listdir(base_dir):
 		full_path = os.path.join(base_dir, path)
-		if '-aligned.txt' in path:
+		if ext in path:
 			with open(full_path, 'r') as file:
-				contents = ' '.join([line[:line.find(',')].lower() for line in file.readlines() if line[:2] != 'sp'])
+				contents = ' '.join([line[:line.find(',')].lower() for line in file.readlines() if line[:2].lower() != 'sp'])
 				num = categorize_response(contents)
 				if num in transcripts:
 					transcripts[num].append(contents)
 				else:
 					transcripts[num] = [contents]
-		elif os.path.isdir(full_path):
-			newtranscripts = read_transcripts(full_path)
+		elif os.path.isdir(full_path) and "exclude" not in path:
+			newtranscripts = read_aligned_transcripts(full_path, ext)
 			for num, transs in newtranscripts.iteritems():
 				if num in transcripts:
 					transcripts[num] += transs
@@ -96,7 +96,8 @@ def avg_word_length(trans):
 	return float(sum(len(w) for w in words)) / float(len(words))
 
 if __name__ == '__main__':
-	transcripts = read_aligned_transcripts("/Users/venkatesh-sivaraman/Dropbox/Public/Stimuli/Formal")
+	#Compare transcripts in two locations
+	'''transcripts = read_aligned_transcripts("/Users/venkatesh-sivaraman/Desktop/Study Data/", ext="-intervals.txt")
 	scores = []
 	for key, transs in transcripts.iteritems():
 		promptscores = []
@@ -125,8 +126,21 @@ if __name__ == '__main__':
 		print key, promptscores
 	statscores2 = [x[1] for x in scores]
 	print np.mean(statscores2), np.std(statscores2)
-	print "T-test:", scipy.stats.ttest_ind(statscores, statscores2)
+	print "T-test:", scipy.stats.ttest_ind(statscores, statscores2)'''
 
-	'''for trans, fscore, wlen, um, andc in scores:
+	transcripts = read_aligned_transcripts("/Users/venkatesh-sivaraman/Desktop/Study Data/", ext="-intervals.txt")
+	scores = []
+	for key, transs in transcripts.iteritems():
+		promptscores = []
+		for trans in transs:
+			promptscores.append(formality_score(parts_of_speech(trans)))
+			scores.append((trans,
+						   promptscores[-1],
+						   avg_word_length(trans),
+						   (trans.count(' uh ') + trans.count(' um ')) / float(len(trans.split(' '))),
+						   trans.count(' and ') / float(len(trans.split(' ')))))
+		print key, promptscores
+	scores = sorted(scores, key=lambda x: x[1])
+	for trans, fscore, wlen, um, andc in scores:
 		print trans
-		print fscore, wlen, um, andc'''
+		print fscore, wlen, um, andc, "\n"
