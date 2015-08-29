@@ -59,3 +59,7 @@ target/
 #IDEs
 *.idea
 *.DS_Store
+
+#Sensitive audio files
+./Django/richreview_htk/static/
+./Django/richreview_htk/richreview_htk/static/
