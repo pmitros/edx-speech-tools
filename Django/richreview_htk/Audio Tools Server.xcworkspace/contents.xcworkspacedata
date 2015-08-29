@@ -143,4 +143,7 @@
    <FileRef
       location = "group:../../formality.py">
    </FileRef>
+   <FileRef
+      location = "group:/Users/venkatesh-sivaraman/Desktop/RSI/edx-speech-tools/Django/readme.md">
+   </FileRef>
 </Workspace>
